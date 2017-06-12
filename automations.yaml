@@ -1,0 +1,39 @@
+- alias: Harmony
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.harmony
+    from: 'Select Input'
+  action:
+    - service: remote.turn_on
+      entity_id: remote.living_room
+      data_template:
+        activity: >
+          {% if is_state("input_select.harmony", "Watch TV") %}
+            21450129
+          {% elif is_state("input_select.harmony", "Watch TV with Surround") %}
+            13915533
+          {% elif is_state("input_select.harmony", "Watch TV via PVR") %}
+            13474528
+          {% elif is_state("input_select.harmony", "Play PS4") %}
+            13332151
+          {% else %}
+          {% endif %}
+    - service: input_select.select_option
+      entity_id: input_select.harmony
+      data_template:
+        option: "Select Input"
+
+- alias: Harmony Off
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: input_select.harmony
+    to: 'Power Off'
+  action:
+    - service: remote.turn_off
+      entity_id: remote.living_room
+    - service: input_select.select_option
+      entity_id: input_select.harmony
+      data_template:
+        option: "Select Input"

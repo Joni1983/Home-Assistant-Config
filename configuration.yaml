@@ -1,0 +1,144 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: !secret name
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret lat
+  longitude: !secret long
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: !secret timezone
+  
+  customize:
+    remote.living_room:
+      hidden: true
+    sensor.current_activity:
+      entity_picture: /local/harmony.png
+    switch.SERVERNEOS:
+      friendly_name: Turn Home Server On/Off
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  api_password: !secret http_pw
+  # Uncomment this if you are using SSL or running in Docker etc
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Weather Prediction
+sensor:
+  - platform: bom
+    station: !secret bom_station
+    monitored_conditions:
+      #- apparent_t
+      #- cloud
+      #- cloud_base_m
+      #- cloud_oktas
+      #- cloud_type_id
+      #- cloud_type
+      #- delta_t
+      #- gust_kmh
+      #- gust_kt
+      - air_temp
+      #- dewpt
+      #- press
+      #- press_qnh
+      #- press_msl
+      #- press_tend
+      - rain_trace
+      - rel_hum
+      #- sea_state
+      #- swell_dir_worded
+      #- swell_height
+      #- swell_period
+      #- vis_km
+      #- weather
+      - wind_dir
+      - wind_spd_kmh
+      #- wind_spd_kt
+  - platform: template
+    sensors:
+      current_activity:
+        friendly_name: 'Current Activity'
+        value_template: '{{ states.remote.living_room.attributes.current_activity }}'
+
+
+# Text to speech
+tts:
+  platform: google
+
+group: !include groups.yaml
+automation: !include automations.yaml
+
+light:
+  - platform: lifx
+    server: !secret lifx_ip
+    
+switch:
+  - platform: wake_on_lan
+    mac_address: !secret wol_mac
+    name: !secret wol_name
+    host: !secret wol_ip
+    turn_off:
+      service: shell_command.serverneos_shutdown
+
+shell_command:
+  serverneos_shutdown: !secret serverneos_shutdown
+    
+device_tracker:
+  - platform: netgear
+    host: !secret netgear_ip
+    username: !secret netgear_user
+    password: !secret netgear_pw
+    interval_seconds: 10
+    consider_home: 180
+    track_new_devices: no
+    
+remote:
+  - platform: harmony
+    name: Living Room
+    host: !secret harmony_ip
+    activity: TV and surround
+    
+input_select:
+  harmony:
+    name: Living Room TV
+    options:
+      - Select Input
+      - Watch TV
+      - Watch TV with Surround
+      - Watch TV via PVR
+      - Play PS4
+      - Power Off
+    icon: mdi:monitor

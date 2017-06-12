@@ -1,0 +1,59 @@
+#default_view:
+  #view: yes
+  #icon: mdi:home 
+  #entities:
+    #- group.people
+    #- group.family_room
+    #- group.hallway
+    #- group.other_lights
+    #- group.bedroom
+    #- group.harmony
+    #- group.server
+
+people:
+  name: Household Members
+  #view: yes
+  entities:
+    - device_tracker.lg_g4
+    - device_tracker.iphone_6_plus
+
+harmony:
+  name: Harmony Hub Living Room
+  #view: yes
+  entities:
+    - sensor.current_activity
+    - input_select.harmony
+    
+family_room:
+  name: Family Area Lights
+  #view: yes
+  entities:
+    - light.1_Kitchen
+    - light.2_Dining
+    - light.3_Living_Room
+
+hallway:
+  name: Hallway Lights
+  #view: yes
+  entities:
+    - light.Hallway_1
+    - light.Hallway_2
+
+bedroom:
+  name: Bedroom Lights
+  #view: yes
+  entities:
+    - light.Bedroom
+    
+other_lights:
+  name: Other Lights
+  #view: yes
+  entities:
+    - light.Study
+    - light.Spare_Room
+
+server:
+  name: Home Server
+  #view: yes
+  entities:
+    - switch.SERVERNEOS
