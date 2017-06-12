@@ -53,7 +53,11 @@ other_lights:
     - light.Spare_Room
 
 server:
-  name: Home Server
+  name: Windows Home Server
   #view: yes
   entities:
+    - sensor.hp_ilo_server_power
     - switch.SERVERNEOS
+    - sensor.hp_ilo_CPU_Temperature
+    - sensor.hp_ilo_Inlet_Temperature
+    - sensor.hp_ilo_CPU_fanspeed
