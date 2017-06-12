@@ -19,10 +19,15 @@ people:
 
 harmony:
   name: Harmony Hub Living Room
+  control: hidden
   #view: yes
   entities:
     - sensor.current_activity
     - input_select.harmony
+    - script.tv_vol_up
+    - script.tv_vol_down
+    #- script.amp_vol_up
+    #- script.amp_vol_down
     
 family_room:
   name: Family Area Lights

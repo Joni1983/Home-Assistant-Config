@@ -1,0 +1,20 @@
+tv_vol_up:
+  alias: TV Volume Up
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: VolumeUp
+        device: 37937380
+        num_repeats: 5
+        delay_secs: 0.25
+tv_vol_down:
+  alias: TV Volume Down
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: VolumeDown
+        device: 37937380
+        num_repeats: 5
+        delay_secs: 0.25
