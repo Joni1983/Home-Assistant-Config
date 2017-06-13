@@ -17,18 +17,6 @@ people:
     - device_tracker.lg_g4
     - device_tracker.iphone_6_plus
 
-harmony:
-  name: Harmony Hub Living Room
-  control: hidden
-  #view: yes
-  entities:
-    - sensor.current_activity
-    - input_select.harmony
-    - script.tv_vol_up
-    - script.tv_vol_down
-    #- script.amp_vol_up
-    #- script.amp_vol_down
-    
 family_room:
   name: Family Area Lights
   #view: yes
@@ -57,12 +45,37 @@ other_lights:
     - light.Study
     - light.Spare_Room
 
+harmony:
+  name: Harmony Hub Living Room
+  control: hidden
+  #view: yes
+  entities:
+    - sensor.harmony_activity
+    - input_select.harmony
+    - script.tv_vol_up
+    - script.tv_vol_down
+    #- script.amp_vol_up
+    #- script.amp_vol_down
+    
 server:
   name: Windows Home Server
   #view: yes
   entities:
     - sensor.hp_ilo_server_power
-    - switch.SERVERNEOS
+    - switch.home_server
     - sensor.hp_ilo_CPU_Temperature
     - sensor.hp_ilo_Inlet_Temperature
     - sensor.hp_ilo_CPU_fanspeed
+
+system_monitor:
+  name: Raspberry Pi Monitor
+  entities:
+    - sensor.cpu_use
+    - sensor.ram_use
+    #- sensor.ram_free
+    #- sensor.ram_use_2
+    #- sensor.disk_use_
+    #- sensor.disk_free_
+    - sensor.disk_use_
+
+    

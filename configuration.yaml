@@ -11,22 +11,8 @@ homeassistant:
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: !secret timezone
   
-  customize:
-    remote.living_room:
-      hidden: true
-    sensor.current_activity:
-      entity_picture: /local/harmony.png
-    switch.SERVERNEOS:
-      friendly_name: Turn Home Server On/Off
-    sensor.hp_ilo_server_power:
-      friendly_name: Server Power
-    sensor.hp_ilo_CPU_Temperature:
-      friendly_name: CPU Temperature
-    sensor.hp_ilo_Inlet_Temperature:
-      friendly_name: Inlet Ambient Temperature
-    sensor.hp_ilo_CPU_fanspeed:
-      friendly_name: CPU Fan Speed
-
+  customize: !include customize.yaml
+      
 # Show links to resources in log and frontend
 #introduction:
 
@@ -50,7 +36,7 @@ http:
 updater:
 
 # Discover some devices automatically
-discovery:
+#discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -80,13 +66,13 @@ light:
 switch:
   - platform: wake_on_lan
     mac_address: !secret wol_mac
-    name: !secret wol_name
+    name: Home Server
     host: !secret wol_ip
     turn_off:
-      service: shell_command.serverneos_shutdown
+      service: shell_command.server_shutdown
 
 shell_command:
-  serverneos_shutdown: !secret serverneos_shutdown
+  server_shutdown: !secret server_shutdown
     
 device_tracker:
   - platform: netgear
@@ -114,3 +100,9 @@ input_select:
       - Play PS4
       - Power Off
     icon: mdi:monitor
+
+media_player:
+  - platform: samsungtv
+    host: !secret samsungtv_ip
+    name: Samsung TV
+    mac: !secret samsungtv_mac

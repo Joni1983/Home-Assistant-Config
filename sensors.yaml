@@ -48,6 +48,18 @@
       value_template: '{{ ilo_data.temperature["02-CPU"].currentreading[0] }}'
 - platform: template
   sensors:
-    current_activity:
+    harmony_activity:
       friendly_name: 'Current Activity'
       value_template: '{{ states.remote.living_room.attributes.current_activity }}'
+- platform: systemmonitor
+  resources:
+    #- type: disk_use
+    #  arg: /
+    #- type: disk_free
+    #  arg: /
+    - type: disk_use_percent
+      arg: /
+    #- type: memory_use
+    #- type: memory_free    
+    - type: memory_use_percent
+    - type: processor_use
