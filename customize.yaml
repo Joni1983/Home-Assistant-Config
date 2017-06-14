@@ -1,21 +1,20 @@
 remote.living_room:
   hidden: true
-
 sensor.harmony_activity:
   entity_picture: /local/harmony.png
-
 switch.home_server:
   friendly_name: Turn Home Server On/Off
-
 sensor.hp_ilo_server_power:
   friendly_name: Server Power
-
 sensor.hp_ilo_CPU_Temperature:
   friendly_name: CPU Temperature
-
 sensor.hp_ilo_Inlet_Temperature:
   friendly_name: Inlet Ambient Temperature
-
 sensor.hp_ilo_CPU_fanspeed:
   friendly_name: CPU Fan Speed
-  
+sensor.bom_air_temp_c:
+  friendly_name: Outside Air Temp
+sensor.bom_relative_humidity:
+  friendly_name: Outside Humidity
+sensor.bom_rain_today:
+  friendly_name: Rain Today

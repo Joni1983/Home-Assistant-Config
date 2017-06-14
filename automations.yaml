@@ -37,3 +37,52 @@
       entity_id: input_select.harmony
       data_template:
         option: "Select Input"
+
+- alias: Home Server On
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: sensor.hp_ilo_server_power
+    to: 'ON'
+  action:
+    service: group.set_visibility
+    entity_id: group.server1
+    data:
+      visible: True
+ 
+- alias: Home Server Off
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: sensor.hp_ilo_server_power
+    to: 'OFF'
+  action:
+    service: group.set_visibility
+    entity_id: group.server1
+    data:
+      visible: False
+
+
+- alias: Samsung Tv On
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: media_player.samsung_tv
+    to: 'on'
+  action:
+    service: group.set_visibility
+    entity_id: group.samsung_tv
+    data:
+      visible: True
+ 
+- alias: Samsung Tv Off
+  hide_entity: True
+  trigger:
+    platform: state
+    entity_id: media_player.samsung_tv
+    to: 'off'
+  action:
+    service: group.set_visibility
+    entity_id: group.samsung_tv
+    data:
+      visible: False

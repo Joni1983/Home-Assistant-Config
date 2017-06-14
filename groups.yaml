@@ -1,14 +1,50 @@
-#default_view:
-  #view: yes
-  #icon: mdi:home 
-  #entities:
+default_view:
+  view: yes
+  icon: mdi:home 
+  entities:
+    - device_tracker.lg_g4
+    - device_tracker.iphone_6_plus
+    - sensor.bom_air_temp_c
+    - sensor.bom_relative_humidity
+    - sensor.bom_rain_today
     #- group.people
-    #- group.family_room
-    #- group.hallway
-    #- group.other_lights
-    #- group.bedroom
-    #- group.harmony
-    #- group.server
+    - group.family_room
+    - group.hallway
+    - group.bedroom
+    - group.other_lights
+    - group.harmony
+    - group.server
+    - group.server1
+    - group.samsung_tv 
+    
+family_room_view:
+  name: Family Area
+  view: yes
+  entities:
+    - group.family_room
+    - group.harmony
+    - group.server
+    - group.server1
+
+hallway_view:
+  name: Hallway Area
+  view: yes
+  entities:
+    - group.hallway
+    - group.other_lights
+    - group.samsung_tv 
+
+bedroom_view:
+  name: Bedroom
+  view: yes
+  entities:
+    - group.bedroom
+    
+pi_view:
+  name: Raspberry Pi
+  view: yes
+  entities:
+    - group.pi_monitor
 
 people:
   name: Household Members
@@ -46,7 +82,7 @@ other_lights:
     - light.Spare_Room
 
 harmony:
-  name: Harmony Hub Living Room
+  name: Harmony Hub
   control: hidden
   #view: yes
   entities:
@@ -63,11 +99,22 @@ server:
   entities:
     - sensor.hp_ilo_server_power
     - switch.home_server
+
+server1:
+  name: Server Health
+  #view: yes
+  entities:
     - sensor.hp_ilo_CPU_Temperature
     - sensor.hp_ilo_Inlet_Temperature
     - sensor.hp_ilo_CPU_fanspeed
 
-system_monitor:
+samsung_tv:
+  name: Samsung TV
+  #view: yes
+  entities:
+    - media_player.samsung_tv
+
+pi_monitor:
   name: Raspberry Pi Monitor
   entities:
     - sensor.cpu_use
