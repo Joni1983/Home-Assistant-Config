@@ -40,10 +40,12 @@ bedroom_view:
   entities:
     - group.bedroom
     
-pi_view:
-  name: Raspberry Pi
+system_view:
+  name: System
   view: yes
   entities:
+    - automation.away_mode__lights_off
+    - group.ssl
     - group.pi_monitor
 
 people:
@@ -115,14 +117,19 @@ samsung_tv:
     - media_player.samsung_tv
 
 pi_monitor:
-  name: Raspberry Pi Monitor
+  name: Raspberry Pi
   entities:
     - sensor.cpu_use
     - sensor.ram_use
-    #- sensor.ram_free
-    #- sensor.ram_use_2
-    #- sensor.disk_use_
-    #- sensor.disk_free_
+    - sensor.ram_free
+    - sensor.ram_use_2
     - sensor.disk_use_
+    - sensor.disk_free_
+    - sensor.disk_use_
+
+ssl:
+  name: SSL Certificate
+  entities:
+    - sensor.ssl_cert_expiry
 
     

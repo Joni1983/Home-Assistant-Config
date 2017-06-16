@@ -53,13 +53,18 @@
       value_template: '{{ states.remote.living_room.attributes.current_activity }}'
 - platform: systemmonitor
   resources:
-    #- type: disk_use
-    #  arg: /
-    #- type: disk_free
-    #  arg: /
+    - type: disk_use
+      arg: /
+    - type: disk_free
+      arg: /
     - type: disk_use_percent
       arg: /
-    #- type: memory_use
-    #- type: memory_free    
+    - type: memory_use
+    - type: memory_free    
     - type: memory_use_percent
     - type: processor_use
+- platform: command_line
+  name: SSL cert expiry
+  unit_of_measurement: days
+  scan_interval: 10800
+  command: !secret ssl_command

@@ -1,3 +1,4 @@
+#### Action for Harmony input selection
 - alias: Harmony
   hide_entity: True
   trigger:
@@ -24,6 +25,7 @@
       data_template:
         option: "Select Input"
 
+#### Action for Harmony input selection to Power-Off
 - alias: Harmony Off
   hide_entity: True
   trigger:
@@ -38,6 +40,7 @@
       data_template:
         option: "Select Input"
 
+### Show Home Server Health when powered on        
 - alias: Home Server On
   hide_entity: True
   trigger:
@@ -49,7 +52,8 @@
     entity_id: group.server1
     data:
       visible: True
- 
+
+### Hide Home Server Health when powered off      
 - alias: Home Server Off
   hide_entity: True
   trigger:
@@ -62,7 +66,7 @@
     data:
       visible: False
 
-
+### Show Samsung TV control when powered on
 - alias: Samsung Tv On
   hide_entity: True
   trigger:
@@ -75,6 +79,7 @@
     data:
       visible: True
  
+ ### Hide Samsung TV control when powered off
 - alias: Samsung Tv Off
   hide_entity: True
   trigger:
@@ -86,3 +91,18 @@
     entity_id: group.samsung_tv
     data:
       visible: False
+      
+### Turn off lights in morning when everyone leaves home
+- alias: 'Away Mode - Lights Off'
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+    to: 'not_home'
+  condition:
+    condition: time
+    # At least one of the following is required.
+    after: '07:15:00'
+    before: '11:30:00'
+  action:
+    service: light.turn_off
+    entity_id: group.all_lights
