@@ -57,9 +57,16 @@
 - alias: Home Server Off
   hide_entity: True
   trigger:
-    platform: state
+    - platform: state
+      entity_id: sensor.hp_ilo_server_power
+      to: 'OFF'
+    - platform: homeassistant
+      event: start
+  condition:
+    # condition needed for homeassistant startup trigger
+    condition: state
     entity_id: sensor.hp_ilo_server_power
-    to: 'OFF'
+    state: 'OFF'
   action:
     service: group.set_visibility
     entity_id: group.server1
@@ -83,9 +90,16 @@
 - alias: Samsung Tv Off
   hide_entity: True
   trigger:
-    platform: state
+    - platform: state
+      entity_id: media_player.samsung_tv
+      to: 'off'
+    - platform: homeassistant
+      event: start
+  condition:
+    # condition needed for homeassistant startup trigger
+    condition: state
     entity_id: media_player.samsung_tv
-    to: 'off'
+    state: 'off'
   action:
     service: group.set_visibility
     entity_id: group.samsung_tv
