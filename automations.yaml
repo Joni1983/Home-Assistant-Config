@@ -120,3 +120,18 @@
   action:
     service: light.turn_off
     entity_id: group.all_lights
+          
+### Turn on kitchen light in evening when someone enters home
+- alias: 'Arrive Home - Kitchen Light On'
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+    to: 'home'
+  condition:
+    condition: sun
+    after: sunset
+    # Optional offset value
+    after_offset: "-00:30:00"
+  action:
+    service: light.turn_on
+    entity_id: light.1_kitchen

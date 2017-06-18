@@ -7,6 +7,7 @@ default_view:
     - sensor.bom_air_temp_c
     - sensor.bom_relative_humidity
     - sensor.bom_rain_today
+    - sun.sun
     #- group.people
     - group.family_room
     - group.hallway
@@ -49,6 +50,7 @@ system_view:
   view: yes
   entities:
     - automation.away_mode__lights_off
+    - automation.arrive_home__kitchen_light_on
     - group.ssl
     - group.pi_monitor
 
