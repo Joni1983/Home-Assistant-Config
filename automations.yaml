@@ -118,8 +118,11 @@
     after: '07:15:00'
     before: '11:30:00'
   action:
-    service: light.turn_off
-    entity_id: group.all_lights
+    - service: light.turn_off
+      entity_id: group.all_lights
+    - service: notify.notify
+      data_template:
+        message: "Lights turned off"
           
 ### Turn on kitchen light in evening when someone enters home
 - alias: 'Arrive Home - Kitchen Light On'
@@ -133,5 +136,44 @@
     # Optional offset value
     after_offset: "-00:30:00"
   action:
-    service: light.turn_on
-    entity_id: light.1_kitchen
+    - service: light.turn_on
+      entity_id: light.1_kitchen
+    - service: notify.notify
+      data_template:
+        message: "Kitchen Light turned on"
+      
+### Flash lights when Ashlei arrives home
+- alias: 'Ashlei Home - Flash Lights'
+  trigger:
+    platform: state
+    entity_id: device_tracker.iphone_6_plus
+    to: 'home'
+  action:
+    - service: light.lifx_effect_pulse
+      entity_id: group.all_lights
+      data:
+        brightness: 180
+        color_name: pink
+        period: 0.7
+        cycles: 3
+    - service: notify.notify
+      data_template:
+        message: "Ashlei has arrived home"
+
+### Flash lights when Nick arrives home
+- alias: 'Nick Home - Flash Lights'
+  trigger:
+    platform: state
+    entity_id: device_tracker.lg_g4
+    to: 'home'
+  action:
+    - service: light.lifx_effect_pulse
+      entity_id: group.all_lights
+      data:
+        brightness: 180
+        color_name: blue
+        period: 0.7
+        cycles: 3
+    - service: notify.notify
+      data_template:
+        message: "Nick has arrived home"

@@ -9,10 +9,7 @@ default_view:
     - sensor.bom_rain_today
     - sun.sun
     #- group.people
-    - group.family_room
-    - group.hallway
-    - group.bedroom
-    - group.other_lights
+    - group.my_home_lights
     - group.harmony
     - group.server
     - group.server1
@@ -22,7 +19,7 @@ family_room_view:
   name: Family Area
   view: yes
   entities:
-    - group.family_room
+    - group.family_lights
     - group.harmony
     - group.server
     - group.server1
@@ -33,8 +30,7 @@ hallway_view:
   name: Hallway Area
   view: yes
   entities:
-    - group.hallway
-    - group.other_lights
+    - group.hallway_lights
     - group.samsung_tv 
     - media_player.chromecast_spare_room
 
@@ -42,7 +38,7 @@ bedroom_view:
   name: Bedroom
   view: yes
   entities:
-    - group.bedroom
+    - group.bedroom_lights
     - media_player.chromecast_bedroom
     
 system_view:
@@ -51,6 +47,8 @@ system_view:
   entities:
     - automation.away_mode__lights_off
     - automation.arrive_home__kitchen_light_on
+    - automation.ashlei_home__flash_lights
+    - automation.nick_home__flash_lights
     - group.ssl
     - group.pi_monitor
 
@@ -61,7 +59,7 @@ people:
     - device_tracker.lg_g4
     - device_tracker.iphone_6_plus
 
-family_room:
+family_lights:
   name: Family Area Lights
   #view: yes
   entities:
@@ -69,26 +67,33 @@ family_room:
     - light.2_Dining
     - light.3_Living_Room
 
-hallway:
+hallway_lights:
   name: Hallway Lights
   #view: yes
   entities:
     - light.Hallway_1
     - light.Hallway_2
+    - light.Study
+    - light.Spare_Room
 
-bedroom:
+bedroom_lights:
   name: Bedroom Lights
   #view: yes
   entities:
     - light.Bedroom
     
-other_lights:
-  name: Other Lights
-  #view: yes
+my_home_lights:
+  name: All Lights
   entities:
+    - light.1_Kitchen
+    - light.2_Dining
+    - light.3_Living_Room
+    - light.Bedroom
+    - light.Hallway_1
+    - light.Hallway_2
     - light.Study
     - light.Spare_Room
-
+    
 harmony:
   name: Harmony Hub
   control: hidden
