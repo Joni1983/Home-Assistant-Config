@@ -38,7 +38,7 @@ http:
 updater:
 
 # Discover some devices automatically
-#discovery:
+discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -108,3 +108,8 @@ media_player:
     host: !secret samsungtv_ip
     name: Samsung TV
     mac: !secret samsungtv_mac
+
+notify:
+  platform: html5
+  gcm_api_key: !secret gcm-sender-key
+  gcm_sender_id: !secret gcm-sender-id

@@ -25,6 +25,8 @@ family_room_view:
     - group.harmony
     - group.server
     - group.server1
+    - media_player.kd65x8500c
+    - media_player.bravia_4k_2015
 
 hallway_view:
   name: Hallway Area
@@ -33,12 +35,14 @@ hallway_view:
     - group.hallway
     - group.other_lights
     - group.samsung_tv 
+    - media_player.chromecast_spare_room
 
 bedroom_view:
   name: Bedroom
   view: yes
   entities:
     - group.bedroom
+    - media_player.chromecast_bedroom
     
 system_view:
   name: System
