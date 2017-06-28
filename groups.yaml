@@ -9,11 +9,14 @@ default_view:
     - sensor.bom_rain_today
     - sun.sun
     #- group.people
-    - group.my_home_lights
+    - group.family_lights
     - group.harmony
+    - group.hallway_lights
+    - group.bedroom_lights
     - group.server
     - group.server1
     - group.samsung_tv 
+    # - camera.CAM_1_RTSP
     
 family_room_view:
   name: Family Area
@@ -99,12 +102,10 @@ harmony:
   control: hidden
   #view: yes
   entities:
-    - sensor.harmony_activity
+    - remote.living_room
+    # - sensor.harmony_activity
     - input_select.harmony
-    - script.tv_vol_up
-    - script.tv_vol_down
-    #- script.amp_vol_up
-    #- script.amp_vol_down
+    - media_player.sony_bravia_tv
     
 server:
   name: Windows Home Server

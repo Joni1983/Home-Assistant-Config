@@ -89,13 +89,13 @@ remote:
   - platform: harmony
     name: Living Room
     host: !secret harmony_ip
-    activity: TV and surround
+    activity: 21450129
     
 input_select:
   harmony:
-    name: Living Room TV
+    name: Current Activity
     options:
-      - Select Input
+      # - Select Input
       - Watch TV
       - Watch TV with Surround
       - Watch TV via PVR
@@ -108,8 +108,32 @@ media_player:
     host: !secret samsungtv_ip
     name: Samsung TV
     mac: !secret samsungtv_mac
+  - platform: braviatv
+    host: !secret bravia_host
 
 notify:
   platform: html5
   gcm_api_key: !secret gcm-sender-key
   gcm_sender_id: !secret gcm-sender-id
+
+zone:
+  name: Work
+  latitude: !secret lat1
+  longitude: !secret long1
+  icon: mdi:briefcase
+
+zone 2:
+  name: Work
+  latitude: !secret lat2
+  longitude: !secret long2
+  icon: mdi:briefcase
+  
+ios:
+
+# ffmpeg:
+  # ffmpeg_bin: /usr/bin/avconv
+  
+# camera:
+  # - platform: ffmpeg
+    # input: -rtsp_transport tcp -i rtsp://192.168.0.101/unicast
+    # name: CAM_1_RTSP

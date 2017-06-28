@@ -1,6 +1,8 @@
-remote.living_room:
-  hidden: true
-sensor.harmony_activity:
+# remote.living_room:
+  # hidden: true
+# sensor.harmony_activity:
+  # entity_picture: /local/harmony.png
+input_select.harmony:
   entity_picture: /local/harmony.png
 switch.home_server:
   friendly_name: Turn Home Server On/Off
