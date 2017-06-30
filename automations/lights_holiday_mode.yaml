@@ -1,0 +1,18 @@
+- alias: 'Holiday - Lights Off'
+  trigger:
+    - platform: time
+      at: '21:05:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.holiday_mode
+    state: 'on'
+  action:
+    - delay: '{{ (range(0, 2)|random|int) }}:{{ (range(1, 59)|random|int) }}:00'
+    - service: light.turn_off
+      entity_id: group.all_lights
+    - delay: '0:00:{{ (range(10, 59)|random|int) }}'
+    - service: light.turn_on
+      entity_id: light.bedroom
+    - delay: '0:{{ (range(5, 20)|random|int) }}:00'
+    - service: light.turn_off
+      entity_id: group.all_lights

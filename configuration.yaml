@@ -1,16 +1,10 @@
 homeassistant:
-  # Name of the location where Home Assistant is running
   name: !secret name
-  # Location required to calculate the time the sun rises and sets
   latitude: !secret lat
   longitude: !secret long
-  # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: !secret elevation
-  # metric for Metric, imperial for Imperial
   unit_system: metric
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: !secret timezone
-  
   customize: !include customize.yaml
       
 # Show links to resources in log and frontend
@@ -23,9 +17,7 @@ frontend:
 config:
 
 http:
-  # Uncomment this to add a password (recommended!)
   api_password: !secret http_pw
-  # Uncomment this if you are using SSL or running in Docker etc
   ssl_certificate: !secret ssl_cert
   ssl_key: !secret ssl_key
   base_url: !secret url
@@ -57,7 +49,7 @@ tts:
   platform: google
 
 group: !include groups.yaml
-automation: !include automations.yaml
+automation: !include_dir_merge_list automations/
 sensor: !include sensors.yaml
 script: !include scripts.yaml
 
@@ -137,3 +129,13 @@ ios:
   # - platform: ffmpeg
     # input: -rtsp_transport tcp -i rtsp://192.168.0.101/unicast
     # name: CAM_1_RTSP
+    
+input_boolean:
+  holiday_mode:
+    name: Holiday Mode
+    initial: off
+    icon: mdi:airplane
+  lights_notifications:
+    name: Lights Notifications
+    initial: off
+    icon: mdi:flash  

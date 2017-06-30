@@ -7,7 +7,7 @@ default_view:
     - sensor.bom_air_temp_c
     - sensor.bom_relative_humidity
     - sensor.bom_rain_today
-    - sun.sun
+    # - sun.sun
     #- group.people
     - group.family_lights
     - group.harmony
@@ -50,29 +50,30 @@ system_view:
   entities:
     - automation.away_mode__lights_off
     - automation.arrive_home__kitchen_light_on
-    - automation.ashlei_home__flash_lights
-    - automation.nick_home__flash_lights
+    - automation.hallway_light_on_at_sunset
+    # - automation.ashlei_home__flash_lights
+    # - automation.nick_home__flash_lights
+    - input_boolean.holiday_mode
+    - input_boolean.lights_notifications
     - group.ssl
     - group.pi_monitor
 
 people:
   name: Household Members
-  #view: yes
   entities:
     - device_tracker.lg_g4
     - device_tracker.iphone_6_plus
 
 family_lights:
   name: Family Area Lights
-  #view: yes
   entities:
     - light.1_Kitchen
     - light.2_Dining
     - light.3_Living_Room
+    - light.4_lamp
 
 hallway_lights:
   name: Hallway Lights
-  #view: yes
   entities:
     - light.Hallway_1
     - light.Hallway_2
@@ -81,7 +82,6 @@ hallway_lights:
 
 bedroom_lights:
   name: Bedroom Lights
-  #view: yes
   entities:
     - light.Bedroom
     
@@ -100,7 +100,6 @@ my_home_lights:
 harmony:
   name: Harmony Hub
   control: hidden
-  #view: yes
   entities:
     - remote.living_room
     # - sensor.harmony_activity
@@ -109,14 +108,12 @@ harmony:
     
 server:
   name: Windows Home Server
-  #view: yes
   entities:
     - sensor.hp_ilo_server_power
     - switch.home_server
 
 server1:
   name: Server Health
-  #view: yes
   entities:
     - sensor.hp_ilo_CPU_Temperature
     - sensor.hp_ilo_Inlet_Temperature
@@ -124,7 +121,6 @@ server1:
 
 samsung_tv:
   name: Samsung TV
-  #view: yes
   entities:
     - media_player.samsung_tv
 

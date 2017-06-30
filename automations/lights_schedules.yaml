@@ -1,0 +1,69 @@
+### Turn off lights in morning when everyone leaves home
+- alias: 'Away Mode - Lights Off'
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+    to: 'not_home'
+  condition:
+    condition: and
+    conditions:
+      - condition: sun
+        after: sunrise
+        # Optional offset value
+        before_offset: "-00:15:00"
+      - condition: time
+        before: '11:30:00'
+      - condition: state
+        entity_id: group.all_lights
+        state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: group.all_lights
+    - service: notify.notify
+      data_template:
+        message: "Lights turned off"
+          
+### Turn on kitchen light in evening when someone enters home
+- alias: 'Arrive Home - Kitchen Light On'
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+    to: 'home'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.1_kitchen
+        state: 'off'
+      - condition: or
+        conditions:
+        - condition: sun
+          after: sunset
+          after_offset: "-00:30:00"
+        - condition: state
+          entity_id: sun.sun
+          state: below_horizon
+  action:
+    - service: light.turn_on
+      entity_id: light.1_kitchen
+    - service: notify.notify
+      data_template:
+        message: "Kitchen Light turned on"
+
+### Turn Hallway Light on at Sunset
+- alias: 'Hallway Light On at Sunset'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:30:00"
+  condition:
+    condition: state
+    entity_id: group.all_devices
+    state: not_home
+  action:
+    service: light.turn_on
+    entity_id: light.hallway_2 
+    data:
+      brightness_pct: 60
+      kelvin: 3200
+      transition: 150      
