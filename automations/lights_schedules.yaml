@@ -1,5 +1,5 @@
 ### Turn off lights in morning when everyone leaves home
-- alias: 'Away Mode - Lights Off'
+- alias: 'Daytime Away Mode'
   trigger:
     platform: state
     entity_id: group.all_devices
@@ -9,22 +9,44 @@
     conditions:
       - condition: sun
         after: sunrise
-        # Optional offset value
-        before_offset: "-00:15:00"
-      - condition: time
-        before: '11:30:00'
-      - condition: state
-        entity_id: group.all_lights
-        state: 'on'
+        after_offset: "-00:15:00"
+      # - condition: time
+        # before: '11:30:00'
+      - condition: sun
+        before: sunset
+        before_offset: "-00:40:00"
+      # - condition: state
+        # entity_id: group.all_lights
+        # state: 'on'
   action:
     - service: light.turn_off
       entity_id: group.all_lights
-    - service: notify.notify
-      data_template:
-        message: "Lights turned off"
-          
+    # - service: notify.notify
+      # data_template:
+        # message: "Lights turned off"
+
+### Leave only Hallway Light on when everyone leaves home at night
+- alias: 'Evening Away Mode'
+  trigger:
+    platform: state
+    entity_id: group.all_devices
+    to: 'not_home'
+  condition:
+    condition: sun
+    after: sunset
+    after_offset: "-00:30:00"
+  action:
+    - service: light.turn_off
+      entity_id: group.all_lights
+      data:
+        transition: 60  
+    - service: light.turn_on
+      entity_id: light.hallway_2
+      data:
+        transition: 15
+        
 ### Turn on kitchen light in evening when someone enters home
-- alias: 'Arrive Home - Kitchen Light On'
+- alias: 'Arrival Lights On'
   trigger:
     platform: state
     entity_id: group.all_devices
@@ -46,9 +68,11 @@
   action:
     - service: light.turn_on
       entity_id: light.1_kitchen
-    - service: notify.notify
-      data_template:
-        message: "Kitchen Light turned on"
+    - service: light.turn_on
+      entity_id: light.4_lamp
+    # - service: notify.notify
+      # data_template:
+        # message: "Kitchen Light turned on"
 
 ### Turn Hallway Light on at Sunset
 - alias: 'Hallway Light On at Sunset'

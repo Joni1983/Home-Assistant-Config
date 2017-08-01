@@ -2,16 +2,15 @@ default_view:
   view: yes
   icon: mdi:home 
   entities:
-    - device_tracker.lg_g4
+    - device_tracker.huawei_mate9
     - device_tracker.iphone_6_plus
     - sensor.bom_air_temp_c
     - sensor.bom_relative_humidity
     - sensor.bom_rain_today
-    # - sun.sun
-    #- group.people
     - group.family_lights
     - group.harmony
     - group.hallway_lights
+    - group.other_lights
     - group.bedroom_lights
     - group.server
     - group.server1
@@ -34,6 +33,7 @@ hallway_view:
   view: yes
   entities:
     - group.hallway_lights
+    - group.other_lights
     - group.samsung_tv 
     - media_player.chromecast_spare_room
 
@@ -43,26 +43,23 @@ bedroom_view:
   entities:
     - group.bedroom_lights
     - media_player.chromecast_bedroom
+    - script.everything_off
     
 system_view:
   name: System
   view: yes
   entities:
-    - automation.away_mode__lights_off
-    - automation.arrive_home__kitchen_light_on
+    - sun.sun
+    - device_tracker.galaxys8
+    - device_tracker.lg_g4
+    - automation.daytime_away_mode
+    - automation.evening_away_mode
+    - automation.arrival_lights_on
     - automation.hallway_light_on_at_sunset
-    # - automation.ashlei_home__flash_lights
-    # - automation.nick_home__flash_lights
     - input_boolean.holiday_mode
     - input_boolean.lights_notifications
     - group.ssl
     - group.pi_monitor
-
-people:
-  name: Household Members
-  entities:
-    - device_tracker.lg_g4
-    - device_tracker.iphone_6_plus
 
 family_lights:
   name: Family Area Lights
@@ -77,6 +74,10 @@ hallway_lights:
   entities:
     - light.Hallway_1
     - light.Hallway_2
+
+other_lights:
+  name: Other Lights
+  entities:
     - light.Study
     - light.Spare_Room
 

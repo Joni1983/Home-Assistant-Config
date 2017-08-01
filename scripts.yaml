@@ -18,3 +18,13 @@ tv_vol_down:
         device: 37937380
         num_repeats: 5
         delay_secs: 0.25
+
+everything_off:
+  alias: Everything Off
+  sequence:
+    - service: light.turn_off
+      entity_id: group.all_lights
+    - service: remote.turn_off
+      entity_id: remote.living_room
+    - service: media_player.turn_off
+      entity_id: media_player.samsung_tv

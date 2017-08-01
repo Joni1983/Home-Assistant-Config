@@ -20,6 +20,9 @@
       to: 'OFF'
     - platform: homeassistant
       event: start
+    - platform: time
+      minutes: 55
+      seconds: 00
   condition:
     # condition needed for homeassistant startup trigger
     condition: state
@@ -53,6 +56,9 @@
       to: 'off'
     - platform: homeassistant
       event: start
+    - platform: time
+      minutes: 55
+      seconds: 00
   condition:
     # condition needed for homeassistant startup trigger
     condition: state
