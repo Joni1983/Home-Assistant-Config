@@ -139,3 +139,6 @@ input_boolean:
     name: Lights Notifications
     initial: off
     icon: mdi:flash  
+    
+ifttt:
+  key: !secret ifttt_key
