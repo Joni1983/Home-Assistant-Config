@@ -60,6 +60,7 @@ system_view:
     - input_boolean.lights_notifications
     - group.ssl
     - group.pi_monitor
+    - input_select.fav_chan
 
 family_lights:
   name: Family Area Lights

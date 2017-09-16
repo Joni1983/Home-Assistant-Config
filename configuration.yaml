@@ -6,6 +6,8 @@ homeassistant:
   unit_system: metric
   time_zone: !secret timezone
   customize: !include customize.yaml
+
+# logger:
       
 # Show links to resources in log and frontend
 #introduction:
@@ -51,7 +53,7 @@ tts:
 group: !include groups.yaml
 automation: !include_dir_merge_list automations/
 sensor: !include sensors.yaml
-script: !include scripts.yaml
+script: !include_dir_merge_named scripts/
 
 light:
   - platform: lifx
@@ -94,7 +96,15 @@ input_select:
       - Play PS4
       - Power Off
     icon: mdi:monitor
-
+  fav_chan:
+    name: Favourite Channels
+    options:
+      - Select Channel
+      - ABC 24
+      - 9 Life
+      - SBS Viceland
+    icon: mdi:monitor    
+    
 media_player:
   - platform: samsungtv
     host: !secret samsungtv_ip

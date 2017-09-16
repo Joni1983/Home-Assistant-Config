@@ -1,24 +1,3 @@
-tv_vol_up:
-  alias: TV Volume Up
-  sequence:
-    - service: remote.send_command
-      data:
-        entity_id: remote.living_room
-        command: VolumeUp
-        device: 37937380
-        num_repeats: 5
-        delay_secs: 0.25
-tv_vol_down:
-  alias: TV Volume Down
-  sequence:
-    - service: remote.send_command
-      data:
-        entity_id: remote.living_room
-        command: VolumeDown
-        device: 37937380
-        num_repeats: 5
-        delay_secs: 0.25
-
 everything_off:
   alias: Everything Off
   sequence:
@@ -28,3 +7,131 @@ everything_off:
       entity_id: remote.living_room
     - service: media_player.turn_off
       entity_id: media_player.samsung_tv
+      
+tv_vol_up:
+  alias: TV Volume Up
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: VolumeUp
+        device: 37937380
+        num_repeats: 5
+        delay_secs: 0.5
+tv_vol_down:
+  alias: TV Volume Down
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: VolumeDown
+        device: 37937380
+        num_repeats: 5
+        delay_secs: 0.5
+amp_vol_up:
+  alias: Amp Volume Up
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: VolumeUp
+        device: 25850323
+        num_repeats: 5
+        delay_secs: 0.3
+amp_vol_down:
+  alias: Amp Volume Down
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: VolumeDown
+        device: 25850323
+        num_repeats: 5
+        delay_secs: 0.3
+amp_bass_up:
+  alias: Amp Bass Up
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: BassUp
+        device: 25850323
+        num_repeats: 5
+        delay_secs: 0.3
+amp_bass_down:
+  alias: Amp Bass Down
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: BassDown
+        device: 25850323
+        num_repeats: 5
+        delay_secs: 0.3   
+
+fav_24:        
+  sequence:
+    - service: remote.turn_on
+      entity_id: remote.living_room
+      data_template:
+        activity: >
+          {% if is_state_attr('remote.living_room', 'current_activity', 'Watch TV') %}
+            21450129
+          {% else %}
+            13915533
+          {% endif %}
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: InputTv
+        device: 37937380
+    # - delay: 00:00:02
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: [0, 2, 4]
+        device: 37937380
+fav_31:        
+  sequence:
+    - service: remote.turn_on
+      entity_id: remote.living_room
+      data_template:
+        activity: >
+          {% if is_state_attr('remote.living_room', 'current_activity', 'Watch TV') %}
+            21450129
+          {% else %}
+            13915533
+          {% endif %}
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: InputTv
+        device: 37937380
+    # - delay: 00:00:02
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: [0, 3, 1]
+        device: 37937380
+fav_94:        
+  sequence:
+    - service: remote.turn_on
+      entity_id: remote.living_room
+      data_template:
+        activity: >
+          {% if is_state_attr('remote.living_room', 'current_activity', 'Watch TV') %}
+            21450129
+          {% else %}
+            13915533
+          {% endif %}
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: InputTv
+        device: 37937380
+    # - delay: 00:00:02
+    - service: remote.send_command
+      data:
+        entity_id: remote.living_room
+        command: [0, 9, 4]
+        device: 37937380
